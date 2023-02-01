@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:innovation_test_application/pages/pages.dart';
+import 'package:innovation_test_application/preferences/preferences_user.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = PreferencesUser();
+  await prefs.initPrefs();
+  runApp(MyApp());
+} 
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -9,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'School Journey',
-      initialRoute: "login",
+      initialRoute: "employeeList",
       //initialRoute: prefs.tokenSJ == "login" ? 'login': 'dashboard',
       //navigatorKey: navigatorKey, // Navegar 
       //scaffoldMessengerKey: , // snacks 
