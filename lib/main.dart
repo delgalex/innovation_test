@@ -24,7 +24,16 @@ class MyApp extends StatelessWidget {
         'login'           : ( _ ) => LoginScreen(),
         'employeeList'    : ( _ ) => EmployeeList(),
         'employeeDetails' : ( _ ) => EmployeeDetails(),      
-      }
+      },
+
+      theme: ThemeData.light().copyWith(
+        primaryColor: const Color(0xFF123f60),
+        appBarTheme: const AppBarTheme(
+          color: Color(0xFF123f60),
+          elevation: 0
+        )
+      ), 
+
     );
   }
 }

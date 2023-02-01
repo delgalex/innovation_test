@@ -10,7 +10,7 @@ class EmployeeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(" Employee List"),
+        title: Text(" Lista de empleados"),
       ),
       drawer: MenuWidget(),
       body: const Center(
