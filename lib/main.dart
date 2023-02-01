@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:innovation_test_application/providers/login_service.dart';
+import 'package:provider/provider.dart';
 import 'package:innovation_test_application/pages/pages.dart';
 import 'package:innovation_test_application/preferences/preferences_user.dart';
 import 'package:innovation_test_application/providers/service_provider.dart';
-import 'package:provider/provider.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +26,8 @@ class _LoadProvidersState extends State<LoadProviders> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ( _ ) => ServiceProvider(), lazy: false),        
+        ChangeNotifierProvider(create: ( _ ) => ServiceProvider(), lazy: false), 
+         ChangeNotifierProvider(create: ( _ ) => LoginService()),       
       ],
       child: MyApp(),
     );
@@ -32,17 +35,15 @@ class _LoadProvidersState extends State<LoadProviders> {
 }
 
 
-
 class MyApp extends StatelessWidget {
+  final prefs = PreferencesUser();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'School Journey',
-      initialRoute: "employeeList",
-      //initialRoute: prefs.tokenSJ == "login" ? 'login': 'dashboard',
-      //navigatorKey: navigatorKey, // Navegar 
-      //scaffoldMessengerKey: , // snacks 
+      //initialRoute: "employeeList",
+      initialRoute: prefs.idUser == 0 ? 'login': 'employeeList',
       routes: {
         'login'           : ( _ ) => LoginScreen(),
         'employeeList'    : ( _ ) => EmployeeList(),
